@@ -14,11 +14,14 @@ public class FarmTileScript : MonoBehaviour
     [SerializeField] GameObject wateredTile;
     [SerializeField] GameObject cropFolder;
     [SerializeField] CropScript cropScript;
+    [SerializeField] selectCropType cropType;
+    [SerializeField] ParticleSystem particle;
+    [SerializeField] float particlePlayTime = 4f;
+    float particlePlayTimeTracker;
 
     private InputAction interact;
 
     enum selectCropType {Wheat, Carrot, Radish}
-    [SerializeField] selectCropType cropType; 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +29,8 @@ public class FarmTileScript : MonoBehaviour
     {
         interact = InputSystem.actions.FindAction("Interact");
         ChangeDefualtState();
+        particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        particlePlayTimeTracker = particlePlayTime;
     }
 
     // Update is called once per frame
@@ -40,6 +45,16 @@ public class FarmTileScript : MonoBehaviour
             ChangeDefualtState();
             AddSelectedCrop(cropScript.harvestAmount);
             EditorUtility.SetDirty(inventoryStats);
+            particle.Play();
+            particlePlayTime = particlePlayTimeTracker;
+        }
+        if (particle.isPlaying)
+        {
+            particlePlayTime -= Time.fixedDeltaTime;
+            if (particlePlayTime <= 0)
+            {
+                particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            }
         }
 
     }

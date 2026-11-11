@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GameStats
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStats
   wheatAmount: 0
-  carrotAmount: 0
+  carrotAmount: 50
   radishAmount: 0
-  dayCounter: 0
+  dayCounter: 57
