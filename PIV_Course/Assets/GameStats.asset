@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryStats
   wheatAmount: 0
   carrotAmount: 50
-  radishAmount: 0
-  dayCounter: 57
+  radishAmount: 50
+  dayCounter: 13

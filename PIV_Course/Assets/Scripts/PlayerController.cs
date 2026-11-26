@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        UnlockCursor();
         mainCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
 

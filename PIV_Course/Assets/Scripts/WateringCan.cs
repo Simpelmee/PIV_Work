@@ -6,12 +6,14 @@ public class WateringCan : MonoBehaviour
     new Animator animation;
     private InputAction interact;
     private float testCounter = 0f;
+    AudioSource audioSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         interact = InputSystem.actions.FindAction("Interact");
         animation = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,10 @@ public class WateringCan : MonoBehaviour
         {
             animation.SetBool("IsWatering", true);
             testCounter = 0.25f;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         testCounter -= Time.deltaTime;
         if (testCounter < 0f)
